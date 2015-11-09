@@ -73,7 +73,6 @@ public class BodyEditorLoader {
 	 * @param name The name of the fixture you want to load.
 	 * @param fd The fixture parameters to apply to the created body fixture.
 	 * @param scale The desired scale of the body. The default width is 1.
-	 * @param corpoPassaro
 	 */
 	public void attachFixture(Body body, String name, FixtureDef fd, float scale, Object userData) {
 		RigidBodyModel rbModel = model.rigidBodies.get(name);

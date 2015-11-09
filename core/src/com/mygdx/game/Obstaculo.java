@@ -11,7 +11,6 @@ import com.badlogic.gdx.physics.box2d.World;
  * Created by Vanessa on 26/10/2015.
  */
 public class Obstaculo {
-
     private World mundo;
     private OrthographicCamera camera;
     private Body corpoCima, corpoBaixo;
@@ -34,15 +33,14 @@ public class Obstaculo {
 
     private void initCorpoBaixo(){
         corpoBaixo = Util.criarCorpo(mundo, BodyDef.BodyType.StaticBody, posX, posYBaixo);
-
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(largura / 2, altura / 2);
-
         Util.criarForma(corpoBaixo, shape, "OBSTACULO_BAIXO");
+
         shape.dispose();
     }
 
-    private void remoce(){
+    public void remove(){
         mundo.destroyBody(corpoCima);
         mundo.destroyBody(corpoBaixo);
     }
@@ -52,21 +50,21 @@ public class Obstaculo {
 
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(largura / 2, altura / 2);
-
         Util.criarForma(corpoCima, shape, "OBSTACULO_CIMA");
 
         shape.dispose();
     }
 
     private void initPosicao() {
-        largura = 40 * Util.PIXEL_METRO;
+        largura = 40 / Util.PIXEL_METRO;
         altura = camera.viewportHeight / Util.PIXEL_METRO;
 
-        float xInicial = largura;
+        float xInicial = largura + (camera.viewportWidth / 2 / Util.PIXEL_METRO);
+
         if (ultimoObstaculo != null) {
-            xInicial = ultimoObstaculo.getPosX();
+            xInicial = ultimoObstaculo.getX();
         }
-        posX = xInicial + 8; // 4 é o espaço entre os obstaculos
+        posX = xInicial + 4; // 4 é o espaço entre os obstaculos
 
         // Parcela é o tamanho de tela dividido por 6, para encontrar a
         // posição Y do obstaculo
@@ -79,8 +77,39 @@ public class Obstaculo {
         posYCima = posYBaixo * altura + 2f;
     }
 
-    public float getPosX(){
+    public float getX(){
         return this.posX;
     }
 
+    public boolean isPassou() {
+        return passou;
+    }
+
+    public void setPassou(boolean passou) {
+        this.passou = passou;
+    }
+
+    public float getLargura() {
+        return largura;
+    }
+
+    public void setLargura(float largura) {
+        this.largura = largura;
+    }
+
+    public float getAltura() {
+        return altura;
+    }
+
+    public void setAltura(float altura) {
+        this.altura = altura;
+    }
+
+    public float getPosX() {
+        return posX;
+    }
+
+    public void setPosX(float posX) {
+        this.posX = posX;
+    }
 }

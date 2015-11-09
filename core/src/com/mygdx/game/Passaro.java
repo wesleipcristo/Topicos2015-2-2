@@ -29,7 +29,7 @@ public class Passaro {
 
     private void initCorpo() {
         float x = (camera.viewportWidth / 2) / Util.PIXEL_METRO;
-        float y = (camera.viewportHeight/ 2) /Util.PIXEL_METRO;
+        float y = (camera.viewportHeight / 2) / Util.PIXEL_METRO;
 
         corpo = Util.criarCorpo(mundo, BodyDef.BodyType.DynamicBody, x, y);
 

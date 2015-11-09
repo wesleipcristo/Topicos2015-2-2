@@ -26,6 +26,7 @@ public class Util {
      */
     public static Body criarCorpo(World mundo, BodyDef.BodyType tipo, float x, float y){
         BodyDef definicao = new BodyDef();
+        definicao.type = tipo;
         definicao.position.set(x,y);
         definicao.fixedRotation = true;
         Body corpo = mundo.createBody(definicao);
@@ -40,12 +41,12 @@ public class Util {
      * @return
      */
     public static Fixture criarForma(Body corpo, Shape shape, String nome){
-        FixtureDef definicao = new FixtureDef();
-        definicao.density = 1; // densidade do corpo
-        definicao.friction = 0.06f; //friccao/atrito entre um corpo e outro
-        definicao.restitution = 0.3f; // elasticidade do corpo
-        definicao.shape = shape;
-        Fixture forma = corpo.createFixture(definicao);
+        FixtureDef def = new FixtureDef();
+        def.density = 1; // densidade do corpo
+        def.friction = 0.06f; //friccao/atrito entre um corpo e outro
+        def.restitution = 0.3f; // elasticidade do corpo
+        def.shape = shape;
+        Fixture forma = corpo.createFixture(def);
         forma.setUserData(nome); //Identificacao da forma
         return forma;
     }
